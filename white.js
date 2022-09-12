@@ -74,8 +74,8 @@ append(b_bishotPosition, b_bishot);
  
 
 
-w_knightPosition.addEventListener("click", wrapperHorse('active_hw'));
-b_knightPosition.addEventListener("click", wrapperHorse('active_hb'));
+w_knightPosition.addEventListener("click", wrapperHorse('active_hw'), {once: true});
+b_knightPosition.addEventListener("click", wrapperHorse('active_hb'), {once: true});
 
 function wrapperHorse(arg) {
 return function horse() {
@@ -84,6 +84,7 @@ return function horse() {
 		console.log(x);
 		console.log(y);
 	
+
 	
 	
 	if ( (+x + 2 < 8) && (+y + 1 < 8)) {
@@ -115,8 +116,8 @@ return function horse() {
 }
 
 
-w_bishotPosition.addEventListener("click", wrapperBishop('active_bw'));
-b_bishotPosition.addEventListener("click", wrapperBishop('active_bb'));
+w_bishotPosition.addEventListener("click", wrapperBishop('active_bw'), {once: true});
+b_bishotPosition.addEventListener("click", wrapperBishop('active_bb'), {once: true});
 
 function wrapperBishop(arg) {
     
@@ -226,8 +227,8 @@ function wrapperBishop(arg) {
 }
 
 
-w_queenPosition.addEventListener("click", wrapperQueen('active_wq'));
-b_queenPosition.addEventListener("click", wrapperQueen('active_bq'));
+w_queenPosition.addEventListener("click", wrapperQueen('active_wq'), {once: true});
+b_queenPosition.addEventListener("click", wrapperQueen('active_bq'), {once: true});
 
 function wrapperQueen(arg) {
 return function queen() {
@@ -418,6 +419,8 @@ divs.forEach(div => { div.addEventListener("click", change)});
 
 function change(e) {
     const targetElement = e.target
+
+	
 
     if ( targetElement.closest('.active_hw')) {
        this.innerHTML = ''
