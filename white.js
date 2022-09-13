@@ -50,73 +50,312 @@ b_bishot.src = "img/bishopb.png";
 
 
 let divs = document.querySelectorAll('.cell-block');
-let w_knightPosition = divs[Math.floor(Math.random() * divs.length)];
-w_knightPosition.append(w_knight);
 
-let w_queenPosition = divs[Math.floor(Math.random() * divs.length)];
-let b_queenPosition = divs[Math.floor(Math.random() * divs.length)];
-let w_bishotPosition = divs[Math.floor(Math.random() * divs.length)];
-let b_bishotPosition = divs[Math.floor(Math.random() * divs.length)];
-let b_knightPosition = divs[Math.floor(Math.random() * divs.length)];
 
-function append(el,el1) {
-    while (el.innerHTML !== '') {
-        el = divs[Math.floor(Math.random() * divs.length)];
-    }
-    el.append(el1)
-}
-append(b_knightPosition,b_knight);
-append(w_queenPosition,w_queen);
-append(b_queenPosition,b_queen);
-append(w_bishotPosition, w_bishot);
-append(b_bishotPosition, b_bishot);
+let w_knightPosition;
+let w_queenPosition;
+let w_bishotPosition;
+
+
 
  
+/*function appendItem() {
+w_knightPosition = divs[Math.floor(Math.random() * divs.length)];
+w_queenPosition = divs[Math.floor(Math.random() * divs.length)];
+w_bishotPosition = divs[Math.floor(Math.random() * divs.length)];
 
 
-w_knightPosition.addEventListener("click", wrapperHorse('active_hw'), {once: true});
-b_knightPosition.addEventListener("click", wrapperHorse('active_hb'), {once: true});
+w_knightPosition.append(w_knight);
+w_bishotPosition.append(w_bishot);
+w_queenPosition.append(w_queen);
 
-function wrapperHorse(arg) {
-return function horse() {
+}*/
+
+let start = document.querySelector('.start').addEventListener('click', promiseClick)
+
+let w_horse;
+let b_horse;
+
+function promiseClick() {
+	
+	
+	return new Promise(function(resolve,reject) {
+		let array = [
+		w_horse = divs[Math.floor(Math.random() * divs.length)],
+		b_horse = divs[Math.floor(Math.random() * divs.length)]
+		];
+		array[0].append(w_knight);
+		array[1].append(b_knight);
+		
+		console.log(array)
+		
+		resolve(array)
+
+	}).then (array => {
+		console.log(array)
+		let first = array[Math.floor(Math.random() * array.length)];
+		console.log(first)
+		
+		return first
+		return array
+		
+
+	}).then(function(first) {
+		step(first)
+		console.log('first step')
+	    return first
+		
+
+	})
+		
+}
+
+
+
+function step(piece) {
+	if (piece.contains(w_knight)) {
+		console.log('white')
+		Horse.bind(piece, w_knight)()
+	}
+
+	if (piece.contains(b_knight)) {
+		console.log('black')
+		Horse.bind(piece, b_knight)()
+	}	
+
+}
+	
+
+
+function Horse(arg)  {
 		let x = this.dataset.x;
-    	let y = this.dataset.y;
-		console.log(x);
-		console.log(y);
-	
+		let y = this.dataset.y;
+		console.log(x,y);
+		
 
+				let arr = [];
 	
+				if ( (+x + 2 < 8) && (+y + 1 < 8)) {
+				let p1 =  document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y + 1}"]`);
+				arr.push(p1)    
+				} 
+				if ( (+x + 2 < 8) && (+y - 1 >= 0)) {
+					let p2 = document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y - 1}"]`);
+					arr.push(p2)
+				}
+				if ( (+x - 2 >= 0) && (+y + 1 <= 8 )) {
+					let p3 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y + 1}"]`);
+					arr.push(p3)
+				}
+				if ( (+x - 2 >= 0) && (+y - 1 >= 0)) {
+					let p4 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y - 1}"]`); 
+					arr.push(p4)
+				}
+				if ( (+x + 1 < 8) && (+y - 2 >= 0)) {
+					let p5 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y - 2}"]`);
+					arr.push(p5)
+				}
+				if ( (+x - 1 >= 0) && (+y - 2 >= 0)) {
+					let p6 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y - 2}"]`);
+					arr.push(p6)
+				}
+				if ( (+x + 1 < 8) && (+y + 2 < 8)) {
+					let p7 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y + 2}"]`);
+					arr.push(p7)
+				}
+				if ( (+x - 1 >= 0) && (+y + 2 < 8)) {
+					let p8 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y + 2}"]`); 
+					arr.push(p8)
+				} 
+		console.log(arr)
+
+			let step = arr[Math.floor(Math.random() * arr.length)]
+			console.log(step)
+
+			setTimeout(() => {
+				this.innerHTML = '';
+				step.innerHTML = '';
+			step.append(arg)
+			},4000)
+
+			
+			
+
+
+		
+}
+
+/*function promiseClick() {
 	
+	return new Promise(function(resolve,reject) {
+		let arr = w_knightPosition = divs[Math.floor(Math.random() * divs.length)]
+		resolve(arr)
+	})
+	.then (data => {
+		return new Promise((resolve,reject)=> {
+			data.append(w_knight)
+			resolve(data)
+		})
+		.then(data1 => {
+			return new Promise((resolve,reject) => {
+				let x = data1.dataset.x;
+				let y = data1.dataset.y;
+				console.log(x,y);
+				console.log(data1)
+
+				let arr = [];
+	
+				if ( (+x + 2 < 8) && (+y + 1 < 8)) {
+				let p1 =  document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y + 1}"]`);
+				arr.push(p1)    
+				} 
+				if ( (+x + 2 < 8) && (+y - 1 >= 0)) {
+					let p2 = document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y - 1}"]`);
+					arr.push(p2)
+				}
+				if ( (+x - 2 >= 0) && (+y + 1 <= 8 )) {
+					let p3 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y + 1}"]`);
+					arr.push(p3)
+				}
+				if ( (+x - 2 >= 0) && (+y - 1 >= 0)) {
+					let p4 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y - 1}"]`); 
+					arr.push(p4)
+				}
+				if ( (+x + 1 < 8) && (+y - 2 >= 0)) {
+					let p5 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y - 2}"]`);
+					arr.push(p5)
+				}
+				if ( (+x - 1 >= 0) && (+y - 2 >= 0)) {
+					let p6 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y - 2}"]`);
+					arr.push(p6)
+				}
+				if ( (+x + 1 < 8) && (+y + 2 < 8)) {
+					let p7 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y + 2}"]`);
+					arr.push(p7)
+				}
+				if ( (+x - 1 >= 0) && (+y + 2 < 8)) {
+					let p8 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y + 2}"]`); 
+					arr.push(p8)
+				} 
+					
+				console.log(arr)
+				let res = arr[Math.floor(Math.random() * arr.length)]
+				console.log(res)
+			
+				resolve(res)
+
+			}).then(res => {
+				setTimeout(()=> {
+					data1.innerHTML = '';
+					data1 = res;
+					data1.append(w_knight)
+				},2000)
+			})
+			
+							
+			
+		})
+		
+	})
+}
+*/
+/*func horsePos() {
+
+	let arr = []
 	if ( (+x + 2 < 8) && (+y + 1 < 8)) {
-        document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y + 1}"]`).classList.toggle(arg);     
+       let p1 =  document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y + 1}"]`).classList.toggle(arg); 
+	   arr.push(p1)    
     } 
     if ( (+x + 2 < 8) && (+y - 1 >= 0)) {
-        document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y - 1}"]`).classList.toggle(arg); 
+        let p2 = document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y - 1}"]`).classList.toggle(arg); 
+		arr.push(p2)
     }
     if ( (+x - 2 >= 0) && (+y + 1 <= 8 )) {
-        document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y + 1}"]`).classList.toggle(arg);
+        let p3 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y + 1}"]`).classList.toggle(arg);
+		arr.push(p3)
     }
     if ( (+x - 2 >= 0) && (+y - 1 >= 0)) {
-        document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y - 1}"]`).classList.toggle(arg); 
+        let p4 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y - 1}"]`).classList.toggle(arg); 
+		arr.push(p4)
     }
     if ( (+x + 1 < 8) && (+y - 2 >= 0)) {
-        document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y - 2}"]`).classList.toggle(arg); 
+        let p5 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y - 2}"]`).classList.toggle(arg); 
+		arr.push(p5)
     }
     if ( (+x - 1 >= 0) && (+y - 2 >= 0)) {
-        document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y - 2}"]`).classList.toggle(arg); 
+        let p6 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y - 2}"]`).classList.toggle(arg); 
+		arr.push(p6)
     }
     if ( (+x + 1 < 8) && (+y + 2 < 8)) {
-        document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y + 2}"]`).classList.toggle(arg); 
+        let p7 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y + 2}"]`).classList.toggle(arg); 
+		arr.push(p7)
     }
     if ( (+x - 1 >= 0) && (+y + 2 < 8)) {
-        document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y + 2}"]`).classList.toggle(arg); 
-    }  
+        let p8 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y + 2}"]`).classList.toggle(arg); 
+		arr.push(p8)
+    } 
+    
+	console.log(arr)
+
+
+}*/
+
+
+
+
+
+
+
+
+/*w_knightPosition.addEventListener("click", wrapperHorse('active_hw'), {once: true});
+b_knightPosition.addEventListener("click", wrapperHorse('active_hb'), {once: true});*/
+
+
+
+
 	
-}
-}
+		/*let arrHorse = [];
+	if ( (+x + 2 < 8) && (+y + 1 < 8)) {
+       let p1 =  document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y + 1}"]`);
+	   arrHorse.push(p1)    
+    } 
+    if ( (+x + 2 < 8) && (+y - 1 >= 0)) {
+        let p2 = document.querySelector(`.cell-block[data-x="${+x + 2}"][data-y="${+y - 1}"]`);
+		arr.push(p2)
+    }
+    if ( (+x - 2 >= 0) && (+y + 1 <= 8 )) {
+        let p3 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y + 1}"]`);
+		arr.push(p3)
+    }
+    if ( (+x - 2 >= 0) && (+y - 1 >= 0)) {
+        let p4 = document.querySelector(`.cell-block[data-x="${+x - 2}"][data-y="${+y - 1}"]`); 
+		arr.push(p4)
+    }
+    if ( (+x + 1 < 8) && (+y - 2 >= 0)) {
+        let p5 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y - 2}"]`);
+		arr.push(p5)
+    }
+    if ( (+x - 1 >= 0) && (+y - 2 >= 0)) {
+        let p6 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y - 2}"]`);
+		arr.push(p6)
+    }
+    if ( (+x + 1 < 8) && (+y + 2 < 8)) {
+        let p7 = document.querySelector(`.cell-block[data-x="${+x + 1}"][data-y="${+y + 2}"]`);
+		arr.push(p7)
+    }
+    if ( (+x - 1 >= 0) && (+y + 2 < 8)) {
+        let p8 = document.querySelector(`.cell-block[data-x="${+x - 1}"][data-y="${+y + 2}"]`); 
+		arr.push(p8)
+    } 
+
+	console.log(arrHorse)  	
+	*/
 
 
-w_bishotPosition.addEventListener("click", wrapperBishop('active_bw'), {once: true});
+/*let newPos = arr[Math.floor(Math.random() * arr.length)];
+	console.log(newPos)
+*/
+/*w_bishotPosition.addEventListener("click", wrapperBishop('active_bw'), {once: true});
 b_bishotPosition.addEventListener("click", wrapperBishop('active_bb'), {once: true});
 
 function wrapperBishop(arg) {
@@ -459,4 +698,4 @@ function change(e) {
 		this.addEventListener("click", wrapperQueen('active_bq'))
 		divs.forEach(el => { el.classList.remove('active_bq')}) 	    
 	}
-}
+}*/
