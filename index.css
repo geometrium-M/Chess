@@ -1,55 +1,30 @@
 
 
-/*.board-wrapper {
-    width: 500px;
-    height: 500px;
-    background-color: beige;
-    position: relative;
-    margin: 0 auto;
-}
-
-.board {
-    width: 402px;
-    height: 402px;
-    position: absolute;
-    margin: 50px;
-    border: 1px solid rgb(84, 149, 84); 
-}
-
-.cell {
-    width: 50px;
-    height: 50px;
-    float: left; 
-}
-
-.green {
-    background-color: rgb(84, 149, 84); 
-    
-}
-
-img {
-    width: 40px;
-    height: 40px;
-}
-
-.active {
-    background-color: orange;
-}
-*/
-
-
 #field {
+    margin: 50px;
     width: 320px;
     height: 320px;
     box-sizing: content-box;
-    border: 1px solid black;
+    border: 0.5px solid black;
+  
+}
+#field::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
+
+
 .cell-block {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     float: left;
-    border: 1px solid rgb(49, 54, 49);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
     
 }
 
@@ -63,14 +38,6 @@ img {
     height: 30px;
 }
 
-.active_hw,
-.active_hb,
-.active_bw,
-.active_bb,
-.active_wq,
-.active_bq {
-    background-color: orange;
-}
 
 .start {
     width: 100px;
@@ -79,4 +46,18 @@ img {
     border-radius: 5%;
     color: rgb(173, 173, 232);
     margin-top: 20px;
+    margin-left: 160px;
+}
+
+
+.active_wh,
+.active_bh,
+.active_wb,
+.active_bb,
+.active_wq,
+.active_bq
+{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(65,83,104,1) 100%);
+  
 }
