@@ -12,17 +12,17 @@ let chess = [
 function draw(){
 	let out = '';
 	let m = 0;
-	for (let i = 0; i < chess.length; i++) {
-		let arr = chess[i];
+	for (let i = 0; i < chess.length; i++) { //deseneaza rindurile orizontale
+		let arr = chess[i]; //arr ii fiecare rind(orizontal) pe rind
 		for(let k = 0; k < arr.length; k++) {
-			if (m % 2 == 0) {
+			if (m % 2 == 0) { // pentru fiecare rind daca ii par --color white ramine, daca impar mai jos ---color black
 				out += `<div class="cell-block" data-x="${k}" data-y="${i}"></div>`;
 			} else {
 				out += `<div class="cell-block bg-black" data-x="${k}" data-y="${i}"></div>`;
 			}
-			m++;
+			m++; // aici are loc iteratia rindului
 		}
-		m++;
+		m++;// crestem m cu o unitate ca la urmatoru rind m sa inceapa cu plus o unitate	
 	}
 	document.querySelector('#field').innerHTML = out;
 }

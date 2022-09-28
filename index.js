@@ -1,20 +1,8 @@
-let chess = [
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-];
-
 function draw(){
 	let out = '';
 	let m = 0;
-	for (let i = 0; i < chess.length; i++) {
-		let arr = chess[i];
-		for(let k = 0; k < arr.length; k++) {
+	for (let i = 0; i < 8; i++) {
+		for(let k = 0; k < 8; k++) {
 			if (m%2 == 0) {
 				out += `<div class="cell-block" data-x="${k}" data-y="${i}"></div>`;
 			} else {
@@ -27,6 +15,8 @@ function draw(){
 	document.querySelector('#field').innerHTML = out;
 }
 draw();
+
+
 
 
 let w_knight = document.createElement("img");
