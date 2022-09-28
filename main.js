@@ -1,28 +1,18 @@
-let chess = [
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0],
-];
+
 
 function draw(){
 	let out = '';
 	let m = 0;
-	for (let i = 0; i < chess.length; i++) { //deseneaza rindurile orizontale
-		let arr = chess[i]; //arr ii fiecare rind(orizontal) pe rind
-		for(let k = 0; k < arr.length; k++) {
-			if (m % 2 == 0) { // pentru fiecare rind daca ii par --color white ramine, daca impar mai jos ---color black
+	for (let i = 0; i < 8; i++) { 
+		for(let k = 0; k < 8; k++) {
+			if (m % 2 == 0) { 
 				out += `<div class="cell-block" data-x="${k}" data-y="${i}"></div>`;
 			} else {
 				out += `<div class="cell-block bg-black" data-x="${k}" data-y="${i}"></div>`;
 			}
-			m++; // aici are loc iteratia rindului
+			m++;
 		}
-		m++;// crestem m cu o unitate ca la urmatoru rind m sa inceapa cu plus o unitate	
+		m++;
 	}
 	document.querySelector('#field').innerHTML = out;
 }
